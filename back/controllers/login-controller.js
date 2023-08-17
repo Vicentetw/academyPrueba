@@ -13,11 +13,17 @@ async function loginController(req, res, next) {
     // envío la respuesta JSON
     res.status(200).json({
       user: {
+
         id: userResponse.id,
         email: userResponse.email,
-        name: userResponse.name,
+        firstName: userResponse.firstName,
+        userName: userResponse.userName,
+        role: userResponse.role,
+
       },
+
       accessToken: userResponse.accessToken,
+
     });
   } catch (error) {
     // Manejo de errores

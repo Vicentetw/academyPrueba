@@ -22,7 +22,7 @@ class UserService {
       throw new NotAuthorized('Contraseña incorrecta');
     }
 
-    const secretKey = process.env.SECRET_KEY || 'ClaveUltraSecreta';
+    const secretKey = process.env.SECRET_KEY;
     const tokenClaims = {
       id: userRecord.id,
       user: userRecord.userName,
@@ -36,10 +36,12 @@ class UserService {
     const userToSend = {
       id: userRecord.id,
       email: userRecord.email,
-      name: userRecord.name,
+      firstName: userRecord.firstName,
+      userName: userRecord.userName,
+      role: userRecord.role.roleName,
       accessToken,
     };
-
+    console.log('Respuesta JSON:', userToSend);
     return userToSend;
   }
 }
