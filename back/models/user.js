@@ -5,7 +5,22 @@ module.exports = (sequelize) => {
     static associate(models) {
       // Define las asociaciones aquí
       User.belongsTo(models.Role, { foreignKey: 'RoleId', as: 'role' });
-      User.belongsToMany(models.Course, { through: 'UserCourse', foreignKey: 'UserId', as: 'courses' });
+      User.belongsToMany(models.Course, {
+        through: 'UserCourse',
+        foreignKey: 'UserId',
+        otherKey: 'CourseId',
+        as: 'courses', // cursos y usuarios inscriptos
+      });
+      User.belongsToMany(models.Course, {
+        through: 'UserTeacherCourse',
+        foreignKey: 'UserId',
+        otherKey: 'TeacherCourseId',
+        as: 'TeacherCourses', // cursos en que el usuario es teacher
+      });
+      User.hasMany(models.Attendance, {
+        foreignKey: 'UserId',
+        as: 'attendance', // Alias para la relación de asistencia del usuario
+      });
     }
   }
 
