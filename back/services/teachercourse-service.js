@@ -117,10 +117,10 @@ async function deleteTeacherCourseById(id) {
   }
 }
 
-async function getUsersInCourseForTeacher(userId, courseId) {
+async function getUsersInCourseForTeacher(teacherId, courseId) {
   try {
     const userCourses = await UserCourse.findAll({
-      where: { CourseId: courseId , UserId: userId},
+      where: { CourseId: courseId},
       include: [
         {
           model: User,
