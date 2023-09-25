@@ -37,7 +37,8 @@ module.exports = (sequelize) => {
     {
       sequelize,
       modelName: 'CourseState',
-    },
+      tableName: 'coursestates',  
+  },
   );
 
   return CourseState;
